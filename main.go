@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 type Repo struct {
@@ -43,16 +44,27 @@ type Server struct {
 func (s *Server) ServeHTTP(resp http.ResponseWriter, req *http.Request) {
 	log.Print("request: ", req.URL.Path)
 	id := req.URL.Path[1:]
-	if repo, ok := s.config.Repos[id]; ok {
-		err := s.template.Execute(resp, repo)
-		if err != nil {
-			resp.WriteHeader(500)
-			resp.Write([]byte("Internal Server Error\n\n"))
-			resp.Write([]byte(fmt.Sprintf("Error: Executing Template: %s, id=%s\n\nRepo=%v", err.Error(), id, repo)))
+	for len(id) > 0 {
+		log.Print("     trying id=", id)
+		if repo, ok := s.config.Repos[id]; ok {
+			err := s.template.Execute(resp, repo)
+			if err != nil {
+				resp.WriteHeader(500)
+				resp.Write([]byte("Internal Server Error\n\n"))
+				resp.Write([]byte(fmt.Sprintf("Error: Executing Template: %s, id=%s\n\nRepo=%v", err.Error(), id, repo)))
+				return
+			}
+			return
 		}
-	} else {
-		resp.WriteHeader(404)
+
+		i := strings.LastIndexByte(id, '/')
+		if i == -1 {
+			break
+		}
+		id = id[:i]
 	}
+	log.Print(id, ": Error 404")
+	resp.WriteHeader(404)
 }
 
 func main() {
