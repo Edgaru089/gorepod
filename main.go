@@ -8,8 +8,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-
-	_ "embed"
 )
 
 type Repo struct {
@@ -25,9 +23,6 @@ type Config struct {
 
 	Repos map[string]*Repo // mapped by ShortPath, like package/code
 }
-
-//go:embed template.html
-var httpTemplate string
 
 var (
 	ConfigFile, TemplateFile string
