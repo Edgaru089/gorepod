@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="go-import" content="{{.ImportPath}} {{.RepoType}} {{.RepoPath}}">
+		<meta name="go-source" content="{{.ImportPath}} _ {{config.GitServerPrefix -}} / {{- .ShortPath -}} /src/branch/master{/dir} {{config.GitServerPrefix -}} / {{- .ShortPath -}} /src/branch/master{/dir}/{file}#L{line}">
+	</head>
+	<body>
+		go get {{.ImportPath}}
+	</body>
+</html>
+
