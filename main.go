@@ -23,11 +23,6 @@ type Repo struct {
 type Config struct {
 	GitServerPrefix string // Like https://github.com or https://git.example.com (without ending slash)
 
-	// go-source tag strings. Example:
-	//     GoSourceFile: https://git.example.com/{/path}/src/branch/master{/dir}
-	//     GoSourceLine: https://git.example.com/{/path}/src/branch/master{/dir}/{file}#L{line}
-	GoSourceFile, GoSourceLine string
-
 	Repos map[string]*Repo // mapped by ShortPath, like package/code
 }
 

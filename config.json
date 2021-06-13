@@ -2,8 +2,6 @@
 	"__comment__": "What comment? Just go read the code.",
 
 	"GitServerPrefix": "https://git.edgaru089.ml",
-	"GoSourceFile": "https://git.edgaru089.ml/{/path}/src/branch/master{/dir}",
-	"GoSourceLine": "https://git.edgaru089.ml/{/path}/src/branch/master{/dir}/{file}#L{line}",
 
 	"Repos": {
 		"go/gl02": {
