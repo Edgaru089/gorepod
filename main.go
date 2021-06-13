@@ -33,7 +33,7 @@ var (
 func init() {
 	flag.StringVar(&ConfigFile, "config", "config.json", "Config file")
 	flag.StringVar(&TemplateFile, "template", "template.html", "template HTML file")
-	flag.StringVar(&ListenAddress, "listen", "0.0.0.0:32148", "listen address")
+	flag.StringVar(&ListenAddress, "listen", "127.0.0.1:32148", "listen address")
 }
 
 type Server struct {
